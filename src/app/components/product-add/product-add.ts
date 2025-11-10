@@ -29,6 +29,8 @@ export class ProductAdd implements OnInit{
     if (this.form.valid) {
       this.productService.addProduct({ id: Date.now(), ...this.form.value });
       this.form.reset();
+      alert('Successfully add product!');
+      this.router.navigate(['/products']);
     }
   }
 }

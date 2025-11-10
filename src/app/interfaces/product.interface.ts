@@ -5,5 +5,5 @@ export interface Product {
   price: number;
   quantity: number;
   category?: string;
-  imageBase64?: string;
+  imageUrl?: string;
 }

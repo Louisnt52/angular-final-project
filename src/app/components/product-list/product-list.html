@@ -1,13 +1,26 @@
 <h3>List of Products</h3>
 <a class="btn btn-success mb-3" routerLink="/product/add">Add Product</a>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Precio</th>
-      <th>Cantidad</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-</table>
+<div class="card shadow-sm p-3">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products()">
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>
+                    <a class="btn btn-primary btn-sm me-1" [routerLink]="['/product/edit', product.id]">Editar</a>
+                    <button class="btn btn-danger btn-sm" (click)="delete(product.id)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

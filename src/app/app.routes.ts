@@ -14,6 +14,14 @@ export const routes: Routes = [
         loadComponent: () => import('./components/product-add/product-add').then(m => m.ProductAdd)
     },
     {
+        path: 'product/edit/:id',
+        loadComponent: () => import('./components/product-edit/product-edit').then(m => m.ProductEdit)
+    },
+    {
+        path: 'product/delete/:id',
+        loadComponent: () => import('./components/product-delete/product-delete').then(m => m.ProductDelete)
+    },
+    {
         path: 'forms',
         loadComponent: () => import('./pages/forms/forms')
     },
