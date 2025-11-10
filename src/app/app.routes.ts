@@ -10,8 +10,16 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/product/product')
     },
     {
+        path: 'product/add',
+        loadComponent: () => import('./components/product-add/product-add').then(m => m.ProductAdd)
+    },
+    {
         path: 'forms',
         loadComponent: () => import('./pages/forms/forms')
+    },
+    {
+        path: 'reactive-forms',
+        loadComponent: () => import('./pages/reactive-forms/reactive-forms')
     },
     {
         path: 'users',
