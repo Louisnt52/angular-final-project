@@ -7,6 +7,7 @@ import { RouterLink } from '@angular/router';
   selector: 'app-product-list',
   imports: [CommonModule, RouterLink],
   templateUrl: './product-list.html',
+  standalone: true,
 })
 export class ProductList {
 

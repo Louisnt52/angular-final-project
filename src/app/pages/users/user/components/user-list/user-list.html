@@ -1,0 +1,80 @@
+<h3>List of Users</h3>
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3 class="fw-bold text-primary m-0">
+      <i class="bi bi-people-fill me-2"></i> List of Users
+    </h3>
+    <button class="btn btn-success d-flex align-items-center" (click)="onAddUser()">
+      <i class="bi bi-person-plus me-2"></i> Add User
+    </button>
+  </div>
+  <div class="card shadow-sm border-0 rounded-3">
+    <div class="card-body p-0">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light border-bottom">
+          <tr>
+            <th scope="col" class="text-center">#</th>
+            <th scope="col">Nombre Completo</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Contraseña</th>
+            <th scope="col">Rol</th>
+            <th scope="col" class="text-center">Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (user of users$ | async; track user.id) {
+            <tr>
+              <td class="text-center fw-semibold">{{ user.id }}</td>
+              <td>{{ user.fullname | titlecase }}</td>
+              <td><span class="badge bg-secondary">{{ user.username }}</span></td>
+              <td>
+                <span class="text-muted">
+                  {{ user.password | slice:0:4 }}****
+                </span>
+              </td>
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'bg-primary': user.role === 'ADMIN',
+                    'bg-info': user.role === 'USER',
+                    'bg-warning text-dark': user.role === 'GUEST'
+                  }"
+                >
+                  {{ user.role | titlecase }}
+                </span>
+              </td>
+              <td class="text-center">
+                <div class="btn-group">
+                  <button
+                    class="btn btn-outline-warning btn-sm d-flex align-items-center"
+                    (click)="onEditUser(user.id)"
+                    [disabled]="isDeleting() === user.id"
+                  >
+                    <i class="bi bi-pencil-square me-1"></i> Editar
+                  </button>
+                  <button
+                    class="btn btn-outline-danger btn-sm d-flex align-items-center"
+                    (click)="onDeleteUser(user.id)"
+                    [disabled]="isDeleting() === user.id"
+                  >
+                    <i class="bi bi-trash3 me-1"></i>
+                    {{ isDeleting() === user.id ? 'Eliminando...' : 'Eliminar' }}
+                  </button>
+                </div>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="text-center py-4 text-muted">
+                <i class="bi bi-exclamation-circle me-2"></i> Dont users logged
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
