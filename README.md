@@ -39,13 +39,13 @@ cd public
 ```
 Iniciar JSON Server:
 ```bash
-json-server --watch db.json --port 3000
+json-server --watch users.json --port 3000
 ```
 Esto levantará un servidor REST en http://localhost:3000.
-Endpoints disponibles:
+Endpoint disponibles:
 /users → usuarios
 
-Levantar la aplicación Angular
+## Levantar la aplicación Angular
 Ejecutar el proyecto:
 ```bash
 ng serve
