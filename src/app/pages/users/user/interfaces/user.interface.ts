@@ -1,4 +1,5 @@
 export interface UserResponse {
+  find(arg0: (u: any) => boolean): unknown;
   users: User[];
 }
 

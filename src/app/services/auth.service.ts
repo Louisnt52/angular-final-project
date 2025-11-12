@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
-import { User } from '../pages/users/user/interfaces/user.interface';
+import { User, UserResponse, Role } from '../pages/users/user/interfaces/user.interface';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -11,13 +11,16 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
   private apiUrl = 'http://localhost:3000/users';
-  
-  constructor(private http: HttpClient) {
-    const savedUser = typeof localStorage !== 'undefined'
-      ? JSON.parse(localStorage.getItem('currentUser') || 'null')
-      : null;
 
-    this.currentUserSubject = new BehaviorSubject<User | null>(savedUser);
+  constructor(private http: HttpClient) {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const storedUser = localStorage.getItem('currentUser');
+      this.currentUserSubject = new BehaviorSubject<User | null>(
+        storedUser ? JSON.parse(storedUser) : null
+      );
+    } else {
+      this.currentUserSubject = new BehaviorSubject<User | null>(null);
+    }
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -30,9 +33,7 @@ export class AuthService {
       map(users => {
         const user = users.find(u => u.username === username && u.password === password);
         if (user) {
-          if (typeof localStorage !== 'undefined') {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-          }
+          localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
           return user;
         }
@@ -42,9 +43,7 @@ export class AuthService {
   }
 
   logout() {
-    if (typeof localStorage !== 'undefined') {
-      localStorage.removeItem('currentUser');
-    }
+    localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     window.location.href = '/login';
   }

@@ -1,0 +1,13 @@
+<ng-container *ngIf="!authService.currentUserValue">
+  <router-outlet></router-outlet>
+</ng-container>
+
+<ng-container *ngIf="authService.currentUserValue">
+    <div class="d-flex vh-100 overflow-hidden">
+        <app-sidebar></app-sidebar>
+    
+        <div class="flex-grow-1 p-4 overflow-auto">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</ng-container>

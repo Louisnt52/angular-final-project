@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './login.html',
   standalone: true,
 })
@@ -35,7 +35,7 @@ constructor(
       this.loginForm.get('password')?.value
     ).subscribe({
       next: () => {
-        window.location.href = '/';
+        this.router.navigate(['/']);
       },
       error: (error) => {
         this.error = error.message;
