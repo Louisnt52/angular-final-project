@@ -20,6 +20,9 @@
     <div class="mb-3">
       <input class="form-control" placeholder="Image URL" formControlName="imageUrl">
     </div>
-    <button class="btn btn-success w-100" type="submit">Save</button>
+    <button class="btn btn-success" type="submit">Save</button>
+    <button type="button" class="btn btn-secondary" (click)="onCancel()" [disabled]="isSubmitting">
+      Cancelar
+    </button>
   </form>
 </div>

@@ -1,31 +1,40 @@
 <div class="card shadow-sm p-4">
-  <h5 class="mb-3">Formulario Reactivo de Producto</h5>
+  <h5 class="mb-3">Reactive Form of Product</h5>
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="mb-3">
-      <label class="form-label">Nombre</label>
+      <label class="form-label">Name</label>
       <input formControlName="name" type="text" class="form-control" />
+      <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="text-danger">
+        The name is mandatory.
+      </div>
     </div>
     <div class="mb-3">
-      <label class="form-label">Precio</label>
+      <label class="form-label">Price</label>
       <input formControlName="price" type="number" class="form-control" />
+      <div *ngIf="form.get('price')?.invalid && form.get('price')?.touched" class="text-danger">
+        The price is mandatory and must be greaterr than 0.
+      </div>
     </div>
     <div class="mb-3">
-      <label class="form-label">Cantidad</label>
+      <label class="form-label">Quantity</label>
       <input formControlName="quantity" type="number" class="form-control" />
+      <div *ngIf="form.get('quantity')?.invalid && form.get('quantity')?.touched" class="text-danger">
+        The quantity is mandatory and must be greater than 0.
+      </div>
     </div>
     <div class="mb-3">
       <label class="form-label">Categoría</label>
       <input formControlName="category" type="text" class="form-control" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Descripción</label>
+      <label class="form-label">Description</label>
       <textarea formControlName="description" rows="2" class="form-control"></textarea>
     </div>
     <div class="mb-3">
-      <label class="form-label">Imagen (URL)</label>
+      <label class="form-label">Image URL</label>
       <input formControlName="imageUrl" type="text" class="form-control" />
     </div>
-    <button type="submit" class="btn btn-primary">Agregar Producto</button>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Add Product</button>
   </form>
 </div>
 

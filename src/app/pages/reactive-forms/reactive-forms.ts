@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from '../../services/productService';
 import { CommonModule } from '@angular/common';
@@ -8,10 +8,12 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './reactive-forms.html',
 })
-export default class ReactiveForms {
+export default class ReactiveForms implements OnInit{
+  public name = signal("Products Module");
+  private fb = inject(FormBuilder);
   form: FormGroup;
-
-  constructor(private fb: FormBuilder, private productService: ProductService) {
+  
+  constructor( private productService: ProductService) {
     this.form = this.fb.group({
       name: ['', Validators.required],
       price: [0, [Validators.required, Validators.min(1)]],
@@ -21,6 +23,10 @@ export default class ReactiveForms {
       imageUrl: ['']
     });
   }
+  
+  ngOnInit() {
+    console.log(this.name());
+  }
 
   submit() {
     if (this.form.valid) {
@@ -28,7 +34,7 @@ export default class ReactiveForms {
       alert('Product added susccesfull');
       this.form.reset();
     } else {
-      alert('Completa todos los campos requeridos');
+      alert('Complete all required fields');
     }
   }
 

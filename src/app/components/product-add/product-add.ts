@@ -10,6 +10,7 @@ import { ProductService } from '../../services/productService';
   templateUrl: './product-add.html',
 })
 export class ProductAdd implements OnInit{
+  public isSubmitting = false;
   form!: FormGroup;
 
   constructor(private fb: FormBuilder, private productService: ProductService, private router: Router) {}
@@ -23,6 +24,10 @@ export class ProductAdd implements OnInit{
       category: [''],
       imageUrl: ['']
     });
+  }
+
+  onCancel(): void{
+    this.router.navigate(['/product']);
   }
 
   save() {

@@ -39,14 +39,19 @@
       </li>
     </ul>
     <hr>
-    <div class="dropdown">
+    <div class="dropdown" *ngIf="currentUser$ | async as user">
       <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown">
         <i class="bi bi-person-circle me-2 fs-5"></i>
-        <strong>User</strong>
+        <strong>{{ user.fullname }}</strong>
+        <span class="ms-2 badge bg-primary" *ngIf="user.role === 'ADMIN'">Admin</span>
+        <span class="ms-2 badge bg-secondary" *ngIf="user.role === 'USER'">User</span>
       </a>
       <ul class="dropdown-menu shadow">
         <li><a class="dropdown-item" (click)="authService.logout()">Logout</a></li>
       </ul>
+    </div>
+    <div *ngIf="!(currentUser$ | async)">
+      <a routerLink="/login">Login</a>
     </div>
   </ng-container>
 </div>
