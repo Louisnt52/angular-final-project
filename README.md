@@ -1,59 +1,72 @@
-# AngularFinalProject
+# Angular Final Project
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+Proyecto desarrollado con **Angular v20.3.10**, utilizando **JSON Server** como backend simulado y **Bootstrap 5.3.8** para estilos y componentes UI. El proyecto incluye funcionalidades de login, gestión de productos y usuarios, así como formularios reactivos y pruebas unitarias con Jasmine/Karma.
 
-## Development server
+---
 
-To start a local development server, run:
+## Tecnologías utilizadas
 
+- **Angular**: v20.3.10  
+- **JSON Server**: para simular API REST  
+- **Bootstrap**: v5.3.8  
+- **RxJS**: manejo de observables  
+- **Jasmine / Karma**: para pruebas unitarias  
+- **TypeScript**: v5.x  
+
+---
+
+## Instalación del proyecto
+
+1. Clonar el repositorio:
+
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd angular-final-project
+```
+2. Instalar dependencias de Angular:
+```bash
+npm install
+```
+3. Instalar JSON Server
+```bash
+npm install -g json-server
+```
+Levantar el servidor JSON
+El proyecto utiliza un archivo users.json dentro de public. Contiene usuarios de ejemplo.
+1. Ir a la carpeta donde se encuentra users.json:
+```bash
+cd public
+```
+Iniciar JSON Server:
+```bash
+json-server --watch db.json --port 3000
+```
+Esto levantará un servidor REST en http://localhost:3000.
+Endpoints disponibles:
+/users → usuarios
+
+Levantar la aplicación Angular
+Ejecutar el proyecto:
 ```bash
 ng serve
 ```
+Abrir en el navegador:
+http://localhost:4200
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La primera vista será el Login. Ingresar credenciales desde public.json.
 
-## Code scaffolding
+Formularios
+Formularios Reactivos:
+Productos (Reactive Forms, Product Add)
+Usuarios (User Create)
+Validaciones incluidas: campos requeridos, longitud mínima, select para roles.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Tests Unitarios
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
+El proyecto incluye pruebas con Jasmine y Karma.
+Ejecutar tests
 ```bash
 ng test
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Esto abrirá Karma en el navegador.
+Ejecuta todos los tests .spec.ts de los componente
