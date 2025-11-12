@@ -55,13 +55,13 @@ http://localhost:4200
 
 La primera vista será el Login. Ingresar credenciales desde public.json.
 
-Formularios
+## Formularios
 Formularios Reactivos:
 Productos (Reactive Forms, Product Add)
 Usuarios (User Create)
 Validaciones incluidas: campos requeridos, longitud mínima, select para roles.
 
-Tests Unitarios
+## Tests Unitarios
 
 El proyecto incluye pruebas con Jasmine y Karma.
 Ejecutar tests
